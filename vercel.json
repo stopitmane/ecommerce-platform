@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "npm run vercel-build",
+  "buildCommand": "npm install --workspace=client && npm install --workspace=server && npm run build --workspace=client",
   "outputDirectory": "client/dist",
   "installCommand": "npm install",
   "rewrites": [
