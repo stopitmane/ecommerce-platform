@@ -1,11 +1,10 @@
 import { Router } from 'express';
 import Stripe from 'stripe';
-import { PrismaClient } from '@prisma/client';
+import prisma from '../lib/db';
 import { authenticate, AuthRequest } from '../middleware/auth';
 
 const router = Router();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2024-11-20.acacia' });
-const prisma = new PrismaClient();
 
 router.post('/create-intent', authenticate, async (req: AuthRequest, res) => {
   try {

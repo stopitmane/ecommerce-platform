@@ -1,36 +1,38 @@
-import prisma from '../src/lib/db';
+import { createClient } from '@libsql/client';
 import bcrypt from 'bcrypt';
+import * as dotenv from 'dotenv';
+import { randomUUID } from 'crypto';
+
+dotenv.config();
+
+const client = createClient({
+  url: process.env.DATABASE_URL!,
+  authToken: process.env.TURSO_AUTH_TOKEN!,
+});
 
 async function main() {
   // Create admin user
   const adminPassword = await bcrypt.hash('admin123', 10);
-  const admin = await prisma.user.upsert({
-    where: { email: 'admin@example.com' },
-    update: {},
-    create: {
-      email: 'admin@example.com',
-      password: adminPassword,
-      name: 'Admin User',
-      role: 'ADMIN'
-    }
+  const adminId = randomUUID();
+  
+  await client.execute({
+    sql: 'INSERT OR REPLACE INTO User (id, email, password, name, role, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)',
+    args: [adminId, 'admin@example.com', adminPassword, 'Admin User', 'ADMIN', new Date().toISOString(), new Date().toISOString()]
   });
 
   // Create regular user
   const userPassword = await bcrypt.hash('user123', 10);
-  const user = await prisma.user.upsert({
-    where: { email: 'user@example.com' },
-    update: {},
-    create: {
-      email: 'user@example.com',
-      password: userPassword,
-      name: 'Test User',
-      role: 'USER'
-    }
+  const userId = randomUUID();
+  
+  await client.execute({
+    sql: 'INSERT OR REPLACE INTO User (id, email, password, name, role, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)',
+    args: [userId, 'user@example.com', userPassword, 'Test User', 'USER', new Date().toISOString(), new Date().toISOString()]
   });
 
   // Create sample products
   const products = [
     {
+      id: randomUUID(),
       name: 'Wireless Headphones',
       description: 'High-quality wireless headphones with noise cancellation',
       price: 199.99,
@@ -39,6 +41,7 @@ async function main() {
       stock: 50
     },
     {
+      id: randomUUID(),
       name: 'Smart Watch',
       description: 'Fitness tracking smartwatch with heart rate monitor',
       price: 299.99,
@@ -47,6 +50,7 @@ async function main() {
       stock: 30
     },
     {
+      id: randomUUID(),
       name: 'Laptop Backpack',
       description: 'Durable backpack with laptop compartment',
       price: 79.99,
@@ -55,6 +59,7 @@ async function main() {
       stock: 100
     },
     {
+      id: randomUUID(),
       name: 'USB-C Cable',
       description: 'Fast charging USB-C cable 6ft',
       price: 19.99,
@@ -63,6 +68,7 @@ async function main() {
       stock: 200
     },
     {
+      id: randomUUID(),
       name: 'Mechanical Keyboard',
       description: 'RGB mechanical gaming keyboard',
       price: 149.99,
@@ -71,6 +77,7 @@ async function main() {
       stock: 40
     },
     {
+      id: randomUUID(),
       name: 'Wireless Mouse',
       description: 'Ergonomic wireless mouse with precision tracking',
       price: 49.99,
@@ -81,8 +88,9 @@ async function main() {
   ];
 
   for (const product of products) {
-    await prisma.product.create({
-      data: product
+    await client.execute({
+      sql: 'INSERT INTO Product (id, name, description, price, image, category, stock, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      args: [product.id, product.name, product.description, product.price, product.image, product.category, product.stock, new Date().toISOString(), new Date().toISOString()]
     });
   }
 
@@ -95,5 +103,5 @@ main()
     process.exit(1);
   })
   .finally(async () => {
-    await prisma.$disconnect();
+    process.exit(0);
   });
