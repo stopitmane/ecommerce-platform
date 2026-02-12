@@ -1,12 +1,17 @@
 {
   "version": 2,
-  "buildCommand": "npm install -w client && npm run build -w client && mkdir -p dist && cp -r client/dist/* dist/",
-  "outputDirectory": "dist",
+  "buildCommand": "npm install -w client && npm run build -w client",
+  "outputDirectory": "client/dist",
   "installCommand": "npm install",
   "rewrites": [
     {
       "source": "/api/(.*)",
       "destination": "/api"
     }
-  ]
+  ],
+  "functions": {
+    "api/*.ts": {
+      "runtime": "@vercel/node@3.0.0"
+    }
+  }
 }
