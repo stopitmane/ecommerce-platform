@@ -1,6 +1,20 @@
 # E-Commerce Platform
 
-A full-featured e-commerce platform built with React, Node.js, PostgreSQL, and Stripe integration.
+[![GitHub stars](https://img.shields.io/github/stars/stopitmane/ecommerce-platform?style=social)](https://github.com/stopitmane/ecommerce-platform/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/stopitmane/ecommerce-platform?style=social)](https://github.com/stopitmane/ecommerce-platform/network/members)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+> A modern, full-featured e-commerce platform built with React, Node.js, and PostgreSQL.
+
+[Live Demo](#) | [Report Bug](https://github.com/stopitmane/ecommerce-platform/issues) | [Request Feature](https://github.com/stopitmane/ecommerce-platform/issues)
+
+## 📸 Screenshots
+
+<!-- Add your screenshots here -->
+![Homepage](screenshots/home.png)
+![Product Detail](screenshots/product.png)
+![Shopping Cart](screenshots/cart.png)
+![Admin Dashboard](screenshots/admin.png)
 
 ## Features
 
@@ -146,6 +160,32 @@ chmod +x deploy.sh
 - Admin: admin@example.com / admin123
 - User: user@example.com / user123
 
-## License
+## ⭐ Star This Repository
 
-MIT
+If you find this project helpful, please consider giving it a star! It helps others discover the project and motivates further development.
+
+[![GitHub stars](https://img.shields.io/github/stars/stopitmane/ecommerce-platform?style=social)](https://github.com/stopitmane/ecommerce-platform/stargazers)
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**stopitmane**
+- GitHub: [@stopitmane](https://github.com/stopitmane)
+- LinkedIn: [Add your LinkedIn]
+
+## 🙏 Acknowledgments
+
+- Built with modern web technologies
+- Inspired by real-world e-commerce platforms
+- Open source and free to use
+
+---
+
+⭐ **Star this repo if you found it helpful!** ⭐
