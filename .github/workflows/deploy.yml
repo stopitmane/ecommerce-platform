@@ -17,16 +17,20 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18'
-        cache: 'npm'
     
-    - name: Install dependencies
+    - name: Install root dependencies
       run: npm install
+    
+    - name: Install workspace dependencies
+      run: npm run install:all
     
     - name: Build client
       run: npm run build:client
     
     - name: Build server
       run: npm run build:server
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL || 'file:./dev.db' }}
     
     - name: Run tests (if available)
       run: npm test --if-present

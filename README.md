@@ -10,11 +10,17 @@
 
 ## 📸 Screenshots
 
-<!-- Add your screenshots here -->
-![Homepage](screenshots/home.png)
-![Product Detail](screenshots/product.png)
+### Product Catalog
+![Product Catalog](screenshots/products.png)
+*Browse through our collection of products with search and category filters*
+
+### Shopping Experience
 ![Shopping Cart](screenshots/cart.png)
-![Admin Dashboard](screenshots/admin.png)
+*Easy-to-use shopping cart with real-time updates*
+
+### User Dashboard
+![User Dashboard](screenshots/dashboard.png)
+*Personalized user experience with order tracking*
 
 ## Features
 
